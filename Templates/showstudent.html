@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{allstudents}}
+<h1><u>Showing all students details</u> </h1>
+<table border="1">
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>password</th>
+    <th>subject</th>
+    <th>mobile</th>
+
+{% for student in allstudents %}
+    <tr>
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.password}}</td>
+        <td>{{student.subject}}</td>
+        <td>{{student.mob}}</td>
+        <td><a href="{% url 'update' student.id %}">Update</a></td>
+        <td><a href="{% url 'delete' student.id %}">Delete</a></td>
+    </tr>
+
+
+{% endfor %}
+
+
+
+    </table>
+</body>
+</html>
