@@ -1,19 +1,31 @@
 <!DOCTYPE html>
+{% include 'navbar.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .palle
+        {
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
+<div class="container jumbotron">
+<div class="palle">
 
 <form action="reg" >
-    <input type="submit" value="register">
-</form>
+    <input type="submit" class="btn btn-danger" value="register" style="width:200px"><br>
+</form><br>
 <form action="log" >
-    <input type="submit" value="login">
-</form>
+    <input type="submit" class="btn btn-primary" value="login" style="width:200px"><br>
+</form><br>
 <form action="show">
-    <input type="submit" value="show student">
-</form>
+    <input type="submit" class="btn btn-success" value="show student" style="width:200px"><br>
+</form><br>
+</div>
+</div>
 </body>
 </html>

@@ -1,3 +1,5 @@
+from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
@@ -37,27 +39,41 @@ def registrationfunction(request):
     s1.subject = sub
     s1.mob = mob
 
+    if User.objects.filter(username=userName).exists():
+        return HttpResponse('<h1>User name already exists try again</h1>' )
+    elif User.objects.filter(email=email).exists():
+        return HttpResponse('<h1>Email already exists try again</h1>')
+    else:
+        user=User.objects.create_user(email=email,password=userPassword,username=userName)
+        user.save()
     s1.save()
 
     return render(request, 'register.html')
 
 
 def loginaction(request):
-    email = request.POST['lemail']
-    pw = request.POST['lpw']
-    if Student.objects.filter(email=email, password=pw).exists():
+    # email = request.POST['lemail']
+    # pw = request.POST['lpw']
+    # if Student.objects.filter(email=email, password=pw).exists():
+    #     return HttpResponse('<h1>Login Success</h1>')
+    # else:
+    #     return HttpResponse('<h1>Login Failure</h1>')
+
+    user=authenticate(username=request.POST['lemail'],password=request.POST['lpw'])
+    print(user)
+    if user is not None:
+        login(request,user)
         return HttpResponse('<h1>Login Success</h1>')
     else:
-        return HttpResponse('<h1>Login Failure</h1>')
-
+        return HttpResponse('<h1>Login Failure</h>')
 
 def updatefunction(request, id):
     student = Student.objects.get(id=id)
     if request.method == "POST":
         student.name= request.POST['userName']
         student.email = request.POST['userEmail']
-        student.subject = request.POST['userPassword']
-        student.password = request.POST['userSubject']
+        student.password= request.POST['userPassword']
+        student.subject = request.POST['userSubject']
         student.mob = request.POST['userMobile']
         student.save()
         return redirect('show')
@@ -67,6 +83,10 @@ def updatefunction(request, id):
 def deletefunction(request, id):
     student = Student.objects.get(id=id)
     student.delete()
-    x = Student.objects.all()
+    # x = Student.objects.all()
+    return redirect('show')
 
-    return render(request, 'showstudent.html', {'x': x})
+
+def f4(request):
+    logout(request)
+    return render(request,'home.html')

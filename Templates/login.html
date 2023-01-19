@@ -1,16 +1,33 @@
 <!DOCTYPE html>
+{% include 'navbar.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
 </head>
 <body>
-<h2>student login Page</h2>
-<form action="loginaction" method="post">
-    {% csrf_token %}
-<input type="email" placeholder="enter your email" name="lemail"><br>
-<input type="password" placeholder="enter your password" name="lpw"><br>
-<input type="submit" value="login">
+<div class="container">
+  <h1>Welcome to login page</h1>
+  <img src="{% static 'images/welcome.jpg' %}" width="25%">
+  <form action="loginaction" method="post">
+     {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email" name="lemail">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password" name="lpw">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
 </form>
+</div>
 </body>
 </html>

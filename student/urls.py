@@ -20,8 +20,9 @@ from student import views
 
 urlpatterns = [
    path('',views.home),
-   path('reg',views.f1),
-   path('log',views.f2),
+   path('reg',views.f1,name='reg'),
+   path('log',views.f2,name='log'),
+   path('logout',views.f4,name='logout'),
    path('show',views.f3,name='show'),
    path('registration',views.registrationfunction),
    path('loginaction',views.loginaction),

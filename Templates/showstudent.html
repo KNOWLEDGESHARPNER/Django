@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% include 'navbar.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-{{allstudents}}
+<div class="container jumbotron">
 <h1><u>Showing all students details</u> </h1>
 <table border="1">
     <th>id</th>
@@ -33,5 +35,6 @@
 
 
     </table>
+</div>
 </body>
 </html>
